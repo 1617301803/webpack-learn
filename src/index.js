@@ -1,10 +1,15 @@
-import './style.css';
-import icon from './facility.gif';
+import print from './print.js';
 
-var x = 1;
+function component() {
+    var element = document.createElement('div');
+    var btn = document.createElement('button');
 
-document.write('webpack');
+    btn.innerHTML = 'click';
+    btn.onclick = print;
 
-var image = new Image();
-image.src = icon;
-document.body.appendChild(image);
+    element.appendChild(btn);
+
+    return element;
+}
+
+document.body.appendChild(component());

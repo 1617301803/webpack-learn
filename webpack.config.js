@@ -1,28 +1,24 @@
 const path = require('path');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const ManifestPlugin = require('webpack-manifest-plugin');
 
 module.exports = {
-    entry: './src/index.js',
     devtool: 'source-map',
-    output: {
-        filename: 'bundle.js',
-        path: path.resolve(__dirname, 'dist')
-    },
-    module: {
-        rules: [{
-            test: /\.css$/,
-            use: ExtractTextPlugin.extract({
-                fallback: "style-loader",
-                use: "css-loader"
-            })
-        }, {
-            test: /\.(png|svg|jpg|gif)$/,
-            use: [
-                'file-loader'
-            ]
-        }, ]
+    entry: {
+        app: './src/index.js',
+        print: './src/print.js'
     },
     plugins: [
-        new ExtractTextPlugin("style.css")
-    ]
+        new CleanWebpackPlugin(['dist']),
+        new ManifestPlugin(),
+        new HtmlWebpackPlugin({
+            title: 'Hello',
+            template: 'index.html'
+        })
+    ],
+    output: {
+        filename: '[name].[chunkhash].js',
+        path: path.resolve(__dirname, 'dist')
+    }
 };
