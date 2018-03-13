@@ -16,13 +16,11 @@ module.exports = {
         new HtmlWebpackPlugin({
             title: 'Hello',
             template: 'index.html'
-        }),
-        new webpack.optimize.CommonsChunkPlugin({
-            name: 'common'
         })
     ],
     output: {
         filename: '[name].[chunkhash].js',
+        chunkFilename: '[name].[chunkhash].js',
         path: path.resolve(__dirname, 'dist')
     }
 };

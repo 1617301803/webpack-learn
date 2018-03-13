@@ -1,18 +1,14 @@
-import print from './print.js';
-import common from './common.js';
+//import print from './print.js';
+//import common from './common.js';
 
-function component() {
-    var element = document.createElement('div');
-    var btn = document.createElement('button');
-
-    btn.innerHTML = 'click';
-    btn.onclick = print;
-
-    element.appendChild(btn);
-
-    return element;
+function getComponet() {
+    return import ('lodash').then(_ => {
+        var element = document.createElement('div');
+        element.innerHTML = 'import';
+        return element;
+    }).catch(error => 'error');
 }
 
-document.body.appendChild(component());
-
-common();
+getComponet().then(component => {
+    document.body.appendChild(component);
+});
