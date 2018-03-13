@@ -1,4 +1,5 @@
 import print from './print.js';
+import common from './common.js';
 
 function component() {
     var element = document.createElement('div');
@@ -13,3 +14,5 @@ function component() {
 }
 
 document.body.appendChild(component());
+
+common();
