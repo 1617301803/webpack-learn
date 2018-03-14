@@ -6,7 +6,7 @@ async function getComponet() {
     var element = document.createElement('div');
     const _ = await
     import ( /*webpackChunkName:"lodash"*/ 'lodash');
-    element.innerHTML = 'import';
+    element.innerHTML = 'import-change-dev-haha';
     return element;
 }
 
