@@ -1,7 +1,5 @@
-import common from './common.js';
+console.log('print init');
 
-common();
-
-export default function print() {
-    console.log('Hit')
+export default () => {
+    console.log('print');
 }

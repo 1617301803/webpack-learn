@@ -1,6 +1,4 @@
 import _ from 'lodash';
-import printMe from './print.js';
-import './style.css';
 
 function component() {
     var element = document.createElement('div');
@@ -8,8 +6,12 @@ function component() {
 
     element.innerHTML = _.join(['Hello', 'webpack'], ' ');
 
-    btn.innerHTML = 'Click me and check the console HAHA!';
-    btn.onclick = printMe;
+    btn.innerHTML = 'Click me and check the console HA';
+    btn.onclick = e =>
+        import ( /*webpackChunkName:"print"*/ './print').then(module => {
+            var print = module.default;
+            print();
+        });
 
     element.appendChild(btn);
 
@@ -17,10 +19,3 @@ function component() {
 }
 
 document.body.appendChild(component());
-
-if (module.hot) {
-    module.hot.accept('./print.js', function() {
-        console.log('Accepting the updated printMe module!');
-        printMe();
-    })
-}

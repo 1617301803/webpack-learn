@@ -17,7 +17,7 @@ module.exports = {
     },
     devServer: {
         contentBase: './dist',
-        hot: true
+        //hot: true
     },
     plugins: [
         new CleanWebpackPlugin(['dist']),
@@ -26,11 +26,11 @@ module.exports = {
             title: 'Hello',
             template: 'index.html'
         }),
-        new webpack.HotModuleReplacementPlugin()
+        //new webpack.HotModuleReplacementPlugin()
     ],
     output: {
-        filename: '[name].[hash].js',
-        chunkFilename: '[name].[chunkhash].js',
+        filename: '[name].[chunkhash].js',
+        //chunkFilename: '[name].[chunkhash].js',
         path: path.resolve(__dirname, 'dist')
     }
 };
