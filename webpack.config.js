@@ -7,7 +7,10 @@ const ManifestPlugin = require('webpack-manifest-plugin');
 module.exports = {
     devtool: 'inline-source-map',
     entry: {
-        app: './src/index.js'
+        main: './src/index.js',
+        vendor: [
+            'lodash'
+        ]
     },
     module: {
         rules: [{
@@ -22,6 +25,13 @@ module.exports = {
     plugins: [
         new CleanWebpackPlugin(['dist']),
         new ManifestPlugin(),
+        new webpack.HashedModuleIdsPlugin(),
+        new webpack.optimize.CommonsChunkPlugin({
+            name: 'vendor'
+        }),
+        new webpack.optimize.CommonsChunkPlugin({
+            name: 'runtime'
+        }),
         new HtmlWebpackPlugin({
             title: 'Hello',
             template: 'index.html'

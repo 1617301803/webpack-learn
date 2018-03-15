@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import print from './print';
 
 function component() {
     var element = document.createElement('div');
@@ -18,6 +19,5 @@ function component() {
     return element;
 }
 
-console.log('test git ssh');
-
+console.log('hash');
 document.body.appendChild(component());
