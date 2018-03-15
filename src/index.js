@@ -18,4 +18,6 @@ function component() {
     return element;
 }
 
+console.log('test git ssh');
+
 document.body.appendChild(component());
