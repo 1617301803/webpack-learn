@@ -1,27 +1,29 @@
 {
-    "name": "webpack-learn",
-    "version": "1.0.0",
-    "description": "",
-    "main": "webpack.config.js",
-    "scripts": {
-        "build": "webpack --env production",
-        "watch": "webpack --watch",
-        "start": "webpack-dev-server --open"
-    },
-    "author": "",
-    "license": "ISC",
-    "devDependencies": {
-        "clean-webpack-plugin": "^0.1.19",
-        "css-loader": "^0.28.10",
-        "extract-text-webpack-plugin": "^3.0.2",
-        "file-loader": "^1.1.11",
-        "html-webpack-plugin": "^3.0.6",
-        "style-loader": "^0.20.3",
-        "webpack": "^3.10.0",
-        "webpack-dev-server": "^2.10.0",
-        "webpack-manifest-plugin": "^2.0.0-rc.2"
-    },
-    "dependencies": {
-        "lodash": "^4.17.5"
-    }
+  "name": "webpack-learn",
+  "version": "1.0.0",
+  "description": "",
+  "main": "webpack.config.js",
+  "scripts": {
+    "build": "cross-env NODE_ENV=production webpack --config webpack.config.js",
+    "webpack": "webpack --env production",
+    "watch": "webpack --watch",
+    "start": "webpack-dev-server --open"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "clean-webpack-plugin": "^0.1.19",
+    "cross-env": "^5.1.4",
+    "css-loader": "^0.28.10",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "file-loader": "^1.1.11",
+    "html-webpack-plugin": "^3.0.6",
+    "style-loader": "^0.20.3",
+    "webpack": "^3.10.0",
+    "webpack-dev-server": "^2.10.0",
+    "webpack-manifest-plugin": "^2.0.0-rc.2"
+  },
+  "dependencies": {
+    "lodash": "^4.17.5"
+  }
 }

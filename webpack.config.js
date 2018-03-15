@@ -36,6 +36,9 @@ module.exports = {
             title: 'Hello',
             template: 'index.html'
         }),
+        new webpack.optimize.UglifyJsPlugin({
+            compress: process.env.NODE_ENV === 'production'
+        })
         //new webpack.HotModuleReplacementPlugin()
     ],
     output: {

@@ -1,6 +1,6 @@
 import _ from 'lodash';
 console.log('print init');
 
-export default () => {
-    console.log('print');
+export default function print(text) {
+    console.log(text);
 }
