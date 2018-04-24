@@ -1,23 +1,13 @@
 import _ from 'lodash';
-import print from './print';
 
 function component() {
-    // var element = document.createElement('div');
-    // var btn = document.createElement('button');
+    var element = document.createElement('div');
 
-    // element.innerHTML = _.join(['Hello', 'webpack'], ' ');
+    // Lodash, currently included via a script, is required for this line to work
+    // Lodash, now imported by this script
+    element.innerHTML = _.join(['Hello', 'webpack'], ' ');
 
-    // btn.innerHTML = 'Click me and check the console HA';
-    // btn.onclick = e =>
-    //     import ( /*webpackChunkName:"print"*/ './print').then(module => {
-    //         var print = module.default;
-    //         print();
-    //     });
-
-    // element.appendChild(btn);
-
-    // return element;
+    return element;
 }
 
-console.log('hash');
 document.body.appendChild(component());
