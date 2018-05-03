@@ -6,16 +6,20 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 module.exports = {
     mode: 'development',
     entry: {
-        index:[
+        index: [
             'webpack-hot-middleware/client',
             './src/index.js'
         ],
-        other:[
+        other: [
             'webpack-hot-middleware/client',
             './src/other.js'
         ]
     },
     devtool: 'source-map',
+    devServer: {
+        contentBase: './dist',
+        hot: true
+    },
 
     plugins: [
         //new CleanWebpackPlugin(['dist']),

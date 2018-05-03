@@ -7,15 +7,19 @@ function component() {
 
     // Lodash, currently included via a script, is required for this line to work
     // Lodash, now imported by this script
-    element.innerHTML = _.join(['Hello', 'webpack3'], ' ');
+    element.innerHTML = _.join(['Hello', 'webpack4'], ' ');
 
     return element;
 }
 
 document.body.appendChild(component());
 
-if (module.hot) {
-    module.hot.accept('./print', () => {
-        console.log('print');
-    });
-}
+console.log('index update -------------   ----------');
+
+// if (module.hot) {
+//     // module.hot.accept('./print', () => {
+//     //     console.log('print');
+//     // });
+
+//     module.hot.accept();
+// }
