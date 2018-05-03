@@ -2,6 +2,13 @@ import _ from 'lodash';
 import print from './print';
 import './index.css';
 
+export class a{
+    constructor(){
+        var a = 5;
+    }
+}
+
+
 function component() {
     var element = document.createElement('div');
 
@@ -16,10 +23,10 @@ document.body.appendChild(component());
 
 console.log('index update -------------   ----------');
 
-// if (module.hot) {
-//     // module.hot.accept('./print', () => {
-//     //     console.log('print');
-//     // });
+if (module.hot) {
+    // module.hot.accept('./print', () => {
+    //     console.log('print');
+    // });
 
-//     module.hot.accept();
-// }
+    module.hot.accept();
+}

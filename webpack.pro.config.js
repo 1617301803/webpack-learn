@@ -4,29 +4,30 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
-    mode: 'development',
+    //mode: 'development',
+    mode:'production',
     entry: {
         index: [
-            'webpack-hot-middleware/client',
+            //'webpack-hot-middleware/client',
             './src/index.js'
         ],
         other: [
-            'webpack-hot-middleware/client',
+            //'webpack-hot-middleware/client',
             './src/other.js'
         ]
     },
-    devtool: 'source-map',
-    devServer: {
-        contentBase: './dist',
-        hot: true
-    },
+    //devtool: 'source-map',
+    // devServer: {
+    //     contentBase: './dist',
+    //     hot: true
+    // },
 
     plugins: [
         //new CleanWebpackPlugin(['dist']),
         new HtmlWebpackPlugin({
             title: '起步'
         }),
-        new webpack.HotModuleReplacementPlugin()
+        //new webpack.HotModuleReplacementPlugin()
     ],
     module: {
         rules: [
