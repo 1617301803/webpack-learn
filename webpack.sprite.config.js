@@ -2,32 +2,35 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const SpritesmithPlugin = require('webpack-spritesmith');
 
 module.exports = {
-    mode: 'development',
+   // mode: 'development',
     entry: {
         index: [
-            //'webpack-hot-middleware/client',
-            './src/index.js'
-        ],
-        other: [
-            //'webpack-hot-middleware/client',
-            './src/other.js'
+            './src/sprite.js'
         ]
     },
     devtool: 'source-map',
-    devServer: {
-        contentBase: './dist',
-        hot: true,
-        inline: false
-    },
 
     plugins: [
         //new CleanWebpackPlugin(['dist']),
         new HtmlWebpackPlugin({
             title: '起步'
         }),
-        new webpack.HotModuleReplacementPlugin()
+        // new SpritesmithPlugin({
+        //     src: {
+        //         cwd: path.index(__dirname, 'src/image'),
+        //         glob: '*.png'
+        //     },
+        //     target: {
+        //         image: path.resolve(__dirname, 'dist/sprite.png'),
+        //         css: path.resolve(__dirname, 'dist/sprites.css')
+        //     },
+        //     apiOptions: {
+        //         cssImageRef: "~sprite.png"
+        //     }
+        // })
     ],
     module: {
         rules: [
@@ -35,7 +38,14 @@ module.exports = {
                 test: /\.css$/,
                 use: [
                     'style-loader',
-                    'css-loader'
+                    'css-loader',
+                    'sprite-loader'
+                ]
+            },
+            {
+                test: /\.png$/,
+                use: [
+                    'file-loader'
                 ]
             },
             {
@@ -49,7 +59,6 @@ module.exports = {
     },
     output: {
         filename: '[name].bundle.js',
-        path: path.resolve(__dirname, 'dist'),
-        publicPath: '/'
+        path: path.resolve(__dirname, 'dist')
     }
 };

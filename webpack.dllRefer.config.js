@@ -6,28 +6,20 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 module.exports = {
     mode: 'development',
     entry: {
-        index: [
-            //'webpack-hot-middleware/client',
+        index:[
             './src/index.js'
-        ],
-        other: [
-            //'webpack-hot-middleware/client',
-            './src/other.js'
         ]
     },
     devtool: 'source-map',
-    devServer: {
-        contentBase: './dist',
-        hot: true,
-        inline: false
-    },
 
     plugins: [
         //new CleanWebpackPlugin(['dist']),
         new HtmlWebpackPlugin({
             title: '起步'
         }),
-        new webpack.HotModuleReplacementPlugin()
+        new webpack.DllReferencePlugin({
+            manifest: require(path.join(__dirname, 'dist', 'lodash.manifest.json'))
+        })
     ],
     module: {
         rules: [
@@ -39,11 +31,11 @@ module.exports = {
                 ]
             },
             {
-                test: /\.js$/,
-                use: [
+                test:/\.js$/,
+                use:[
                     'babel-loader'
                 ],
-                exclude: /node_module/
+                exclude:/node_module/
             }
         ]
     },

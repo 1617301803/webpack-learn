@@ -3,31 +3,27 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
+const Plugin = require('./bin/plugins/Plugin');
+
 module.exports = {
     mode: 'development',
     entry: {
-        index: [
-            //'webpack-hot-middleware/client',
+        index:[
             './src/index.js'
         ],
-        other: [
-            //'webpack-hot-middleware/client',
+        other:[
             './src/other.js'
         ]
     },
     devtool: 'source-map',
-    devServer: {
-        contentBase: './dist',
-        hot: true,
-        inline: false
-    },
 
     plugins: [
         //new CleanWebpackPlugin(['dist']),
         new HtmlWebpackPlugin({
-            title: '起步'
+            title: '起步',
+            filename:'index.html'
         }),
-        new webpack.HotModuleReplacementPlugin()
+        new Plugin()
     ],
     module: {
         rules: [
@@ -35,15 +31,16 @@ module.exports = {
                 test: /\.css$/,
                 use: [
                     'style-loader',
-                    'css-loader'
+                    'css-loader?minimize'
                 ]
             },
             {
-                test: /\.js$/,
-                use: [
+                test:/\.js$/,
+                use:[
+                    //'emptyLoader.js',
                     'babel-loader'
                 ],
-                exclude: /node_module/
+                exclude:/node_module/
             }
         ]
     },
@@ -51,5 +48,8 @@ module.exports = {
         filename: '[name].bundle.js',
         path: path.resolve(__dirname, 'dist'),
         publicPath: '/'
+    },
+    resolveLoader:{
+        modules:['node_modules','./bin/loaders']
     }
 };

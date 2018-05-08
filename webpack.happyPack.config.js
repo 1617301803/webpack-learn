@@ -2,32 +2,39 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const HappyPack = require('happypack');
+const ParallelUglifyPlugin = require('webpack-parallel-uglify-plugin');
 
 module.exports = {
     mode: 'development',
     entry: {
         index: [
-            //'webpack-hot-middleware/client',
             './src/index.js'
         ],
         other: [
-            //'webpack-hot-middleware/client',
             './src/other.js'
         ]
     },
     devtool: 'source-map',
-    devServer: {
-        contentBase: './dist',
-        hot: true,
-        inline: false
-    },
 
     plugins: [
         //new CleanWebpackPlugin(['dist']),
         new HtmlWebpackPlugin({
             title: '起步'
         }),
-        new webpack.HotModuleReplacementPlugin()
+        new HappyPack({
+            id: 'babel',
+            loaders: ['babel-loader']
+        }),
+        new ParallelUglifyPlugin({
+            uglifyJS: {
+                output: {
+                    beautify: false,
+                    comments: false
+                }
+            }
+        })
+
     ],
     module: {
         rules: [
@@ -41,7 +48,7 @@ module.exports = {
             {
                 test: /\.js$/,
                 use: [
-                    'babel-loader'
+                    'happypack/loader?id=babel'
                 ],
                 exclude: /node_module/
             }
