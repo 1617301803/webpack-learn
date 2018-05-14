@@ -4,7 +4,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
     mode: 'development',
-    entry: './src/index.js',
+    entry: './src/main.js',
     devtool: 'source-map',
     devServer: {
         contentBase: './dist'
@@ -15,6 +15,15 @@ module.exports = {
             title: '起步'
         })
     ],
+    module: {
+        rules: [
+            {
+                test: /.js$/,
+                use: ['babel-loader'],
+                include:path.resolve(__dirname,'src')
+            }
+        ]
+    },
     output: {
         filename: 'bundle.js',
         path: path.resolve(__dirname, 'dist')
