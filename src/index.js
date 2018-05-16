@@ -1,8 +1,4 @@
-import a from './a';
-1;
-setTimeout(() => {
+import { file, parse } from './globals.js';
+console.log('index');
 
-    import('./async').then(module => {
-        console.log(module);
-    });
-}, 1000);
+console.log(file, parse);

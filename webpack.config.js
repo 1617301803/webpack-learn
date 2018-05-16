@@ -10,11 +10,26 @@ module.exports = {
     devServer: {
         contentBase: './dist'
     },
+    module: {
+        rules: [
+            {
+                test: require.resolve('./src/globals.js'),
+                use: 'imports-loader?this=>window'
+            },
+            {
+                test: require.resolve('./src/globals.js'),
+                use: 'exports-loader?file,parse=helpers.parse'
+            }
+        ]
+    },
     plugins: [
-       new webpack.NamedModulesPlugin(),
+        new webpack.NamedModulesPlugin(),
         new CleanWebpackPlugin(['dist']),
         new HtmlWebpackPlugin({
             title: '起步'
+        }),
+        new webpack.ProvidePlugin({
+            _: 'lodash'
         })
     ],
     output: {
